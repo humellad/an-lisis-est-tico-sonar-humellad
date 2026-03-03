@@ -60,6 +60,7 @@ public class AnnealingSearch<A, S, N extends HeuristicNode<A, S, Double, N>> ext
 	static final private Double START_TEMP = 1.;
 
 	private N initialNode;
+	private Random randIndGen = new Random();
 	private Double alpha;
 	private Double minTemp;
 	private AcceptanceProbability acceptanceProbability;
@@ -116,7 +117,6 @@ public class AnnealingSearch<A, S, N extends HeuristicNode<A, S, Double, N>> ext
 					for (N successor : nodeExpander.expand(node)) {
 						successors.add(successor);
 					}
-					Random randIndGen = new Random();
 					return successors.get(Math.abs(randIndGen.nextInt()) % successors.size());
 				}
 			};
@@ -201,3 +201,4 @@ public class AnnealingSearch<A, S, N extends HeuristicNode<A, S, Double, N>> ext
 		N estimate(N node, NodeExpander<A, S, N> nodeExpander);
 	}
 }
+
